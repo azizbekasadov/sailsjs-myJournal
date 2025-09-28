@@ -9,31 +9,22 @@
  * https://sailsjs.com/config/session
  */
 
+const MongoStore = require('connect-mongo');
+
 module.exports.session = {
-
-  /***************************************************************************
-  *                                                                          *
-  * Session secret is automatically generated when your new app is created   *
-  * Replace at your own risk in production-- you will invalidate the cookies *
-  * of your users, forcing them to log in again.                             *
-  *                                                                          *
-  ***************************************************************************/
-  secret: 'd4519261ac544e564bec1b53a3fa5c34',
-
-
-  /***************************************************************************
-  *                                                                          *
-  * Customize when built-in session support will be skipped.                 *
-  *                                                                          *
-  * (Useful for performance tuning; particularly to avoid wasting cycles on  *
-  * session management when responding to simple requests for static assets, *
-  * like images or stylesheets.)                                             *
-  *                                                                          *
-  * https://sailsjs.com/config/session                                       *
-  *                                                                          *
-  ***************************************************************************/
-  // isSessionDisabled: function (req){
-  //   return !!req.path.match(req._sails.LOOKS_LIKE_ASSET_RX);
-  // },
-
+  secret: process.env.SESSION_SECRET || 'd4519261ac544e564bec1b53a3fa5c34',
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/myjournal',
+    collectionName: 'sessions',
+    ttl: 14 * 24 * 60 * 60, // seconds, optional
+    autoRemove: 'native'
+  }),
+  url: 'mongodb://lbta.lbta111@ds151007.mlab.com:51007/myjournallbta',
+  collection: 'sessions',
+  session: {
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000,
+    secure: true
+  }
+}
 };

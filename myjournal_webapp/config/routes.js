@@ -32,26 +32,11 @@ module.exports.routes = {
   'GET /account':            { action: 'account/view-account-overview' },
   'GET /account/password':   { action: 'account/view-edit-password' },
   'GET /account/profile':    { action: 'account/view-edit-profile' },
+  'GET /home':               { action: 'post/home' },
 
-
-  //  ╔╦╗╦╔═╗╔═╗  ╦═╗╔═╗╔╦╗╦╦═╗╔═╗╔═╗╔╦╗╔═╗   ┬   ╔╦╗╔═╗╦ ╦╔╗╔╦  ╔═╗╔═╗╔╦╗╔═╗
-  //  ║║║║╚═╗║    ╠╦╝║╣  ║║║╠╦╝║╣ ║   ║ ╚═╗  ┌┼─   ║║║ ║║║║║║║║  ║ ║╠═╣ ║║╚═╗
-  //  ╩ ╩╩╚═╝╚═╝  ╩╚═╚═╝═╩╝╩╩╚═╚═╝╚═╝ ╩ ╚═╝  └┘   ═╩╝╚═╝╚╩╝╝╚╝╩═╝╚═╝╩ ╩═╩╝╚═╝
   '/terms':                   '/legal/terms',
   '/logout':                  '/api/v1/account/logout',
 
-
-  //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
-  //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
-  //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
-  // …
-
-
-  //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
-  //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
-  //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
-  // Note that, in this app, these API endpoints may be accessed using the `Cloud.*()` methods
-  // from the Parasails library, or by using those method names as the `action` in <ajax-form>.
   '/api/v1/account/logout':                           { action: 'account/logout' },
   'PUT   /api/v1/account/update-password':            { action: 'account/update-password' },
   'PUT   /api/v1/account/update-profile':             { action: 'account/update-profile' },
@@ -62,5 +47,7 @@ module.exports.routes = {
   'POST  /api/v1/entrance/update-password-and-login':    { action: 'entrance/update-password-and-login' },
   'POST  /api/v1/deliver-contact-form-message':          { action: 'deliver-contact-form-message' },
   'POST  /api/v1/observe-my-session':                 { action: 'observe-my-session', hasSocketFeatures: true },
+  'POST /post': { action: 'post/create-post'},
 
+  'DELETE /post/:postId': { action: 'post/delete-post'},
 };

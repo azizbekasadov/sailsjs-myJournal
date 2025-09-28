@@ -19,11 +19,17 @@ module.exports = {
   fn: async function (inputs) {
     console.log('We are now inside of post/create action');
     
+    const userId = this.req.session.userId;
+    console.log(userId);
+    
     const JSONObj = {
-      title: inputs.title, body: inputs.body
+      title: inputs.title, 
+      body: inputs.body,
+      user: userId,
     };
 
     await Post.create(JSONObj);
-    return;
+
+    this.res.redirect('/home');
   }
 };
